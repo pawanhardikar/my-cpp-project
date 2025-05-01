@@ -10,7 +10,7 @@ pipeline {
                     cmakeCommand: 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release',
                     runTests: false,
                     artifactPattern: 'build/Release/my_app.exe', //  artifactPattern
-                    buildDir: 'build' // Add buildDir parameter
+                    buildDir: 'build' //  buildDir parameter
                 ) {
                     echo "Running post-build steps..."
                     createArtifact name: "my_executable", type: "exe"
@@ -19,3 +19,4 @@ pipeline {
         }
     }
 }
+
