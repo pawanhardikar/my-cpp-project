@@ -10,10 +10,8 @@ pipeline {
                     cmakeCommand: 'cmake -S. -Bbuild',
                     runTests: false
                 ) {
-                    stage('Post-Build') {
-                        echo "Running post-build steps..."
-                        createArtifact name: "my_executable", type: "exe"
-                    }
+                    echo "Running post-build steps..."
+                    createArtifact name: "my_executable", type: "exe"
                 }
             }
         }
