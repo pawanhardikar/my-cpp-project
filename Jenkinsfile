@@ -8,7 +8,8 @@ pipeline {
                 cppBuild(
                     buildType: 'Release',
                     cmakeCommand: 'cmake -S. -Bbuild',
-                    runTests: false
+                    runTests: false,
+                    artifactPattern: 'build/bin/my_app' //Add artifactPattern here
                 ) {
                     echo "Running post-build steps..."
                     createArtifact name: "my_executable", type: "exe"
