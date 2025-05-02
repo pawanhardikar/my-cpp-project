@@ -1,4 +1,4 @@
-@Library('my-shared-library') _
+@Library('my-shared-library@0.1.0') _
 
 pipeline {
     agent any
@@ -7,15 +7,16 @@ pipeline {
             steps {
                 cppBuild(
                     buildType: 'Release',
-                    cmakeCommand: 'cmake -S. -Bbuild',
-                    runTests: false
+                    cmakeCommand: 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release',
+                    runTests: false,
+                    artifactPattern: 'build/Release/my_app.exe', //  artifactPattern
+                    buildDir: 'build' //  buildDir parameter
                 ) {
-                    stage('Post-Build') {
-                        echo "Running post-build steps..."
-                        createArtifact name: "my_executable", type: "exe"
-                    }
+                    echo "Running post-build steps..."
+                    createArtifact name: "my_executable", type: "exe"
                 }
             }
         }
     }
 }
+
